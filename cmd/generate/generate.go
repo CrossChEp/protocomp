@@ -49,7 +49,11 @@ func parseDependencies() (map[string]interface{}, error) {
 			}
 		}
 		parentName := path.Base(parentPath)
-		res[parentName[:len(parentName)-6]] = deps
+		data := map[string]interface{}{
+			"path":         parentPath,
+			"dependencies": deps,
+		}
+		res[parentName[:len(parentName)-6]] = data
 	}
 	return res, nil
 }
